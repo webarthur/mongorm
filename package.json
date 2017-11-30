@@ -1,0 +1,33 @@
+{
+  "name": "mongorm",
+  "version": "1.0.1",
+  "description": "ORM for MongoDB",
+  "main": "mongorm.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webarthur/mongorm.git"
+  },
+  "keywords": [
+    "mongodb",
+    "mongoose",
+    "model",
+    "document",
+    "schema",
+    "database",
+    "odm",
+    "data",
+    "datastore",
+    "query",
+    "nosql",
+    "orm"
+  ],
+  "author": "Arthur Araújo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/webarthur/mongorm/issues"
+  },
+  "homepage": "https://github.com/webarthur/mongorm#readme"
+}
