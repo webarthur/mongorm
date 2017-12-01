@@ -24,8 +24,8 @@
     "nosql",
     "orm"
   ],
-  "author": "Arthur Araújo",
-  "license": "ISC",
+  "author": "Arthur Araújo <webarthur@gmail.com> (https://araujo.cc)",
+"license": "ISC",
   "bugs": {
     "url": "https://github.com/webarthur/mongorm/issues"
   },
