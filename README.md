@@ -31,23 +31,23 @@ After connect and configure:
 
 const MongoORM = require('mongorm')
 
-const Posts = module.exports = MongORM('spots', {
+const Posts = module.exports = MongORM('posts', {
   
   // we can use async/await functions
   async getFromUser (user_ai) {
     
     // we can find by ObjectId (even if it is a string)
-    const spots = await Posts.find(user_ai)
+    const posts = await Posts.find(user_ai)
 
     // we can use the "hasError" to check if everything is ok
     if (Posts.hasError) return new Error('Get posts from user failed.')
 
     // return results as array
-    return spots
+    return posts
   }
 
   // or use promises with callbacks
-  getFromTag (categoryID, callbackSucess, callbackError) {
+  getFromCategory (categoryID, callbackSucess, callbackError) {
     Posts.find({cat: categoryID})
     .then(function (data) {
       callbackSucess(data)
@@ -56,6 +56,31 @@ const Posts = module.exports = MongORM('spots', {
       callbackError(err)
     })
   }
+})
+
+```
+
+## Using the ORM
+
+```javascript
+// index.js
+
+const MongoClient = require('mongodb').MongoClient
+const MongoORM = require('mongorm')
+
+MongoClient.connect(mongoString, async function (err, db) {
+  if (err) return console.error(err)
+  MongoORM.setDatabase(db)
+	
+  // with callback
+  Posts.getFromCategory(15, function (data) {
+    console.log(data)
+  })
+
+  // with async/await
+  const posts = Posts.getFromUser('5a208716aa97e3107751b041')
+  if (Posts.hasError) return console.error(Posts.hasError)
+  console.log(posts)
 })
 
 ```
