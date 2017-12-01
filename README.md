@@ -34,10 +34,10 @@ const MongoORM = require('mongorm')
 const Posts = module.exports = MongORM('posts', {
   
   // we can use async/await functions
-  async getFromUser (user_ai) {
+  async getFromUser (user_id) {
     
     // we can find by ObjectId (even if it is a string)
-    const posts = await Posts.find(user_ai)
+    const posts = await Posts.find(user_id)
 
     // we can use the "hasError" to check if everything is ok
     if (Posts.hasError) return new Error('Get posts from user failed.')
@@ -78,7 +78,7 @@ MongoClient.connect(mongoString, async function (err, db) {
   })
 
   // with async/await
-  const posts = Posts.getFromUser('5a208716aa97e3107751b041')
+  const posts = await Posts.getFromUser('5a208716aa97e3107751b041')
   if (Posts.hasError) return console.error(Posts.hasError)
   console.log(posts)
 })
