@@ -54,8 +54,9 @@ const MongORM  = function (collection, obj) {
       return args
     },
 
-    promised (fn, args) {
-      if (!ORM.docs) return Promise.reject(new Error(errors.no_collection))
+    promised (fn, args, docs) {
+      if (!docs) docs = ORM.docs
+      if (!docs) return Promise.reject(new Error(errors.no_collection))
 
       // arguments with super powers
       if (args && ORM.superMethods.indexOf(fn) > -1) args = this.superArgs(args)
@@ -80,6 +81,11 @@ const MongORM  = function (collection, obj) {
           return reject(err)
         })
       })
+    },
+
+    fail (err) {
+      this.hasError = new Error(err)
+      return false
     },
 
     set () {
